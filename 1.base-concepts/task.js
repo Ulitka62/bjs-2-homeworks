@@ -23,26 +23,17 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   
   if (isNaN(percent)|| percent<0) {
     return 'Ошибка ввода данных процентной ставки'
-<<<<<<< HEAD
   } else if(isNaN(contribution)|| contribution<0){
     return 'Ошибка ввода данных суммы первоначального взноса'
   } else if (isNaN(amount) || amount<0){
     return 'Ошибка ввода данных суммы кредита'
   } else if (isNaN(date) || date<0){
     return 'Ошибка ввода данных даты'
-  } else {
-=======
-  }else if(isNaN(contribution)|| contribution<0){
-    return 'Ошибка ввода данных суммы первоначального взноса'
-  }else if (isNaN(amount) || amount<0){
-    return 'Ошибка ввода данных суммы кредита'
-  } else if (isNaN(date) || date<0){
-    return 'Ошибка ввода данных даты'
-  }else {
->>>>>>> ffd3617dfc1931f4d733011ae3ac997c1b6a8fcc
+  }else{
     let  payMonth = S*(P+P/(((1+P)**n)-1)); // Ежемесячная оплата
     let totalAmount = (payMonth*n).toFixed(2); // Общая сумма
     console.log(totalAmount);
   return totalAmount;
   }
 };
+  
