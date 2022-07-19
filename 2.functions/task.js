@@ -37,6 +37,8 @@ function makeWork(arrOfArr, worker){
   }
   return max;
 }
+
+
 // Задание 3
 function worker2(arr){
   let min = max = arr[0];
