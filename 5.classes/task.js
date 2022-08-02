@@ -111,15 +111,15 @@ class Library {
         return null;
     };
 
-    giveBookByName(list, bookName) {
-        for(let giveBook of this.books) {
-            if (giveBook[list] == bookName) {
-                 return  this.books.splice(list, 1)[0];
-            }
+    giveBookByName(bookName) {
+        const index = this.books.findIndex(books=>books.name==bookName);
+        if(index>=0) {
+            return this.books.splice(index,1)[0];
+        }  else {
+            return null;
         }
-        return null;
-    }
 };
+}
 
 const library = new Library("Библиотека имени Ленина");
 
