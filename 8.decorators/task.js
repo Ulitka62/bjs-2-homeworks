@@ -26,15 +26,14 @@ function debounceDecoratorNew(func, ms) {
 
   return function wrapper (...args) {
     if(timerID == undefined) {
-      func.apply(this.args);
+      func.apply(null, this.args);
     }
 
     clearTimeout(timerID);
 
 
     timerID = setTimeout(() => {
-      func.apply(this.args);
-      console.timeEnd('time');
+      func.apply(null, this.args);
     }, ms);
   }
 }
@@ -45,7 +44,7 @@ function debounceDecorator2(func) {
 
   return function wrapper (...args) {
     if(timerID == undefined) {
-      func.apply(this.args);
+      func.apply(null, this.args);
       wrapper.count++;
     }
 
@@ -53,8 +52,8 @@ function debounceDecorator2(func) {
 
 
     timerID = setTimeout(() => {
-      func.apply(this.args);
-      console.timeEnd('time');
+      func.apply(null, this.args);
+      wrapper.count++;
     }, ms);
   }
 }
