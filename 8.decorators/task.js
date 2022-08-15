@@ -1,12 +1,60 @@
 function cachingDecoratorNew(func) {
-  // Ваш код
-}
+  let cache = [];
+  
+  function wrapper(...args) {
+      const hash = args.join(','); 
+      let objectInCache = cache.find((item) => item.hash === hash); 
+      if (objectInCache) { 
+          console.log("Из кэша: " + objectInCache.value); 
+          return "Из кэша: " + objectInCache.value;
+      }
+  
+      let result = func(...args); 
+      cache.push({hash, value: result}) ;
+      if (cache.length > 5) { 
+        cache.shift(); 
+      }
+      console.log("Вычисляем: " + result);
+      return "Вычисляем: " + result;  
+  }
+  return wrapper;
+  }
 
 
-function debounceDecoratorNew(func) {
-  // Ваш код
+function debounceDecoratorNew(func, ms) {
+  let timerID;
+
+  return function wrapper (...args) {
+    if(timerID == undefined) {
+      func.apply(this.args);
+    }
+
+    clearTimeout(timerID);
+
+
+    timerID = setTimeout(() => {
+      func.apply(this.args);
+      console.timeEnd('time');
+    }, ms);
+  }
 }
 
 function debounceDecorator2(func) {
-  // Ваш код
+  let timerID;
+  wrapper.count = 0;
+
+  return function wrapper (...args) {
+    if(timerID == undefined) {
+      func.apply(this.args);
+      wrapper.count++;
+    }
+
+    clearTimeout(timerID);
+
+
+    timerID = setTimeout(() => {
+      func.apply(this.args);
+      console.timeEnd('time');
+    }, ms);
+  }
 }
